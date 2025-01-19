@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASAD UNANI DAWAKHANA - Herbal Medicine Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <h1>ASAD UNANI DAWAKHANA</h1>
+            <span class="tagline">🌿 Natural Healing Traditions</span>
+        </div>
+        <div class="nav-links">
+            <div class="menu-links">
+                <a href="#" class="active">Home</a>
+                <a href="#medicines">Medicines</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="action-buttons">
+                <button class="cart-icon" id="cartIcon">
+                    🛒 <span class="cart-count">0</span>
+                </button>
+                <button class="settings-btn gradient-btn" id="settingsBtn">⚙️</button>
+                <button class="auth-btn" id="authBtn">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Welcome to Natural Healing</h2>
+                <p>Discover the power of traditional Unani medicine</p>
+                <button class="explore-btn">Explore Our Medicines ➡️</button>
+            </div>
+            <div class="hero-animation">
+                <div class="floating-leaves"></div>
+            </div>
+        </section>
+
+        <section id="medicines" class="products">
+            <h2>Our Medicines</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </section>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Shopping Cart 🛒</h3>
+            <div class="cart-items">
+                <!-- Cart items will be dynamically loaded -->
+            </div>
+            <div class="cart-total">
+                <span>Total Amount:</span>
+                <span id="cartTotal">₹0.00</span>
+            </div>
+            <button class="checkout-btn gradient-btn" onclick="proceedToCheckout()">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Order Summary 🛒</h3>
+            <p class="highlight-msg">AFTER CONFURMING MSG ME AT WHATSAPP +92 3087817695</p>
+            <form id="orderForm">
+                <!-- Order summary will be inserted here -->
+                <div class="form-group">
+                    <input type="text" name="fullName" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phoneNumber" placeholder="WhatsApp Number (e.g., +92 3087817695)" 
+                           pattern="[\+]?[0-9\s\-\(\)]+" 
+                           title="Please enter a valid phone number with country code"
+                           required>
+                </div>
+                <div class="form-group">
+                    <textarea name="address" placeholder="Delivery Address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="age" placeholder="Age" required min="18" max="100">
+                </div>
+                <div class="form-group">
+                    <select name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="place-order-btn gradient-btn">
+                    Place Order
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Settings ⚙️</h3>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="orders" onclick="switchSettingsTab('orders')">Orders</button>
+                <button class="tab-btn" data-tab="profile" onclick="switchSettingsTab('profile')">Profile</button>
+            </div>
+            <div class="tab-content">
+                <div id="ordersContent" class="tab-pane active">
+                    <h4>Your Orders</h4>
+                    <div class="orders-list">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+<!-- Authentication Modal -->
+<div class="modal" id="authModal">
+    <div class="modal-content auth-modal">
+        <span class="close-btn">&times;</span>
+        <div class="auth-tabs">
+            <button class="tab-btn active" data-tab="login">Login</button>
+            <button class="tab-btn" data-tab="signup">Sign Up</button>
+        </div>
+        
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form active">
+            <h3>Welcome Back! 👋</h3>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="gradient-btn">Login</button>
+            <p class="form-footer">
+                <a href="#" id="forgotPassword">Forgot Password?</a>
+            </p>
+        </form>
+        
+        <!-- Signup Form -->
+        <form id="signupForm" class="auth-form">
+            <h3>Create Account ✨</h3>
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required minlength="8">
+            </div>
+            <div class="form-group">
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="gradient-btn">Sign Up</button>
+        </form>
+    </div>
+</div>
